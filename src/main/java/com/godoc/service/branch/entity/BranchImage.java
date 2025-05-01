@@ -1,4 +1,4 @@
-package com.godoc.service.hospital.entity;
+package com.godoc.service.branch.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -8,10 +8,10 @@ import lombok.Data;
 
 @Data
 @Entity
-public class HospitalImage {
+public class BranchImage {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Long hospitalId;
+    private Long branchId;
     private String s3Url;
 }

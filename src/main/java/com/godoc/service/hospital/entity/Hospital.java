@@ -6,13 +6,14 @@ import lombok.Data;
 import java.util.Calendar;
 import java.util.List;
 
-@Entity
 @Data
+@Entity
 public class Hospital {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+    @Column(unique = true)
     private String email;
     private Long credentialsId;
     private String logo;

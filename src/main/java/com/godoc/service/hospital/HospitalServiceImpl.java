@@ -55,7 +55,7 @@ public class HospitalServiceImpl implements HospitalService{
         hospital.setFoundationDate(request.getFoundationDate());
         hospitalRepository.save(hospital);
 
-        String basePath = hospital.getId().toString() + "/";
+        String basePath = "hospital/" + hospital.getId().toString();
         if (request.getLogo() != null) {
             String path = basePath + "/logo/" + request.getLogo().getOriginalFilename();
             hospital.setLogo(S3Utils.uploadMultipartFileToS3(path, request.getLogo()));
