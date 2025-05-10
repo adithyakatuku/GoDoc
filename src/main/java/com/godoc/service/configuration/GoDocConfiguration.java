@@ -38,7 +38,7 @@ public class GoDocConfiguration {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(
                         request -> request
-                        .requestMatchers("/login", "hospital/register", "/refresh-token").permitAll()
+                        .requestMatchers("/login", "/hospital/register", "/refresh-token").permitAll()
                         .anyRequest().authenticated()
                 )
                 .httpBasic(Customizer.withDefaults())

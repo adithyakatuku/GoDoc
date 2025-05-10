@@ -15,12 +15,18 @@ import com.godoc.service.hospital.entity.Hospital;
 import com.godoc.service.hospital.repository.HospitalRepository;
 import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Arrays;
 
+@Service
 public class BranchServiceImpl implements BranchService{
+
+    @Autowired
+    private HospitalRepository hospitalRepository;
 
     @Autowired
     private BranchRepository branchRepository;
@@ -31,11 +37,9 @@ public class BranchServiceImpl implements BranchService{
     @Autowired
     private CredentialsRepository credentialsRepository;
 
-    @Autowired
-    private HospitalRepository hospitalRepository;
-
     private final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder(12);
 
+    @PreAuthorize("hasAuthority('HOSPITAL')")
     @Override
     public RegisterBranchResponse registerBranch(RegisterBranchRequest request, UserDetailsImpl authenticatedHospital) throws Exception {
 
@@ -44,6 +48,7 @@ public class BranchServiceImpl implements BranchService{
         credentials.setPassword(passwordEncoder.encode(request.getPassword()));
         credentials.setRoles(
                 Arrays.stream(Role.values())
+                        .filter(role -> !role.equals(Role.HOSPITAL))
                         .map(Enum::name)
                         .toList()
         );
