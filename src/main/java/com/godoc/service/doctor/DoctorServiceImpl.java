@@ -46,7 +46,7 @@ public class DoctorServiceImpl implements DoctorService{
         long hospitalId, branchId;
         boolean registeredByHospital = authenticatedAdministrator.getAuthorities().contains(Role.HOSPITAL);
         if (registeredByHospital) {
-            Hospital hospital = hospitalRepository.findByEmail(request.getEmail());
+            Hospital hospital = hospitalRepository.findByEmail(authenticatedAdministrator.getUsername());
             if (request.getBranchId() == null)
                 throw new InvalidArgumentException("No branch details provided to register the doctor.");
 
