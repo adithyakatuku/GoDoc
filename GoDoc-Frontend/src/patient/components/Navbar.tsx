@@ -52,14 +52,14 @@ const Navbar = () => {
                   Appointments
                 </Text>
               </Link>
-              <Link to="/patient/messages">
+              <Link to="/patient/medical-records">
                 <Text
-                  color={isActive('/patient/messages') ? 'green.500' : 'gray.600'}
-                  fontWeight={isActive('/patient/messages') ? '700' : '600'}
+                  color={isActive('/patient/medical-records') ? 'green.500' : 'gray.600'}
+                  fontWeight={isActive('/patient/medical-records') ? '700' : '600'}
                   cursor="pointer"
                   _hover={{ color: 'gray.800' }}
                 >
-                  Messages
+                  Medical Records
                 </Text>
               </Link>
             </Flex>
