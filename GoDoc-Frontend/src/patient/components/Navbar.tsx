@@ -25,12 +25,14 @@ const Navbar = () => {
         <Flex align="center" justify="space-between">
           {/* Logo and Navigation */}
           <Flex gap={12} align="center">
-            <Flex gap={3} align="center">
-              <Image src={godocLogo} alt="GoDoc" h={10} />
-              <Heading size="md" color="gray.800" fontWeight="800">
-                GoDoc
-              </Heading>
-            </Flex>
+            <Link to="/patient/home">
+              <Flex gap={3} align="center" cursor="pointer" _hover={{ opacity: 0.8 }}>
+                <Image src={godocLogo} alt="GoDoc" h={10} />
+                <Heading size="md" color="gray.800" fontWeight="800">
+                  GoDoc
+                </Heading>
+              </Flex>
+            </Link>
             <Flex gap={8} align="center">
               <Link to="/patient/home">
                 <Text
@@ -47,7 +49,7 @@ const Navbar = () => {
                   color={isActive('/patient/appointments') ? 'green.500' : 'gray.600'}
                   fontWeight={isActive('/patient/appointments') ? '700' : '600'}
                   cursor="pointer"
-                  _hover={{ color: 'gray.800' }}
+                  _hover={{ color: 'green.600' }}
                 >
                   Appointments
                 </Text>
@@ -57,7 +59,7 @@ const Navbar = () => {
                   color={isActive('/patient/medical-records') ? 'green.500' : 'gray.600'}
                   fontWeight={isActive('/patient/medical-records') ? '700' : '600'}
                   cursor="pointer"
-                  _hover={{ color: 'gray.800' }}
+                  _hover={{ color: 'green.600' }}
                 >
                   Medical Records
                 </Text>
