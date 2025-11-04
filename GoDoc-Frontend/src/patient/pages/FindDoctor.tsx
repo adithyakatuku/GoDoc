@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import {
   Box,
   Container,
@@ -27,6 +28,7 @@ interface Doctor {
 }
 
 const FindDoctor = () => {
+  const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCity, setSelectedCity] = useState('any');
   const [selectedHospital, setSelectedHospital] = useState('any');
@@ -382,6 +384,7 @@ const FindDoctor = () => {
                     mt="auto"
                     w="100%"
                     _hover={{ bg: '#388E3C', borderColor: '#388E3C' }}
+                    onClick={() => navigate(`/patient/find-doctor/${doctor.id}`)}
                   >
                     Book Appointment
                   </Button>

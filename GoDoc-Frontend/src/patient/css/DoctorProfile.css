@@ -1,0 +1,76 @@
+.doctor-calendar {
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.doctor-calendar .react-calendar {
+  border: none;
+  border-radius: 12px;
+  font-family: inherit;
+  width: 100%;
+  max-width: 100%;
+}
+
+.doctor-calendar .react-calendar__tile {
+  padding: 0.5rem;
+  fontSize: 0.875rem;
+  border-radius: 9999px;
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.doctor-calendar .react-calendar__tile:enabled:hover {
+  background-color: rgba(16, 185, 129, 0.1);
+}
+
+.doctor-calendar .react-calendar__tile--active {
+  background-color: #10b981 !important;
+  color: white !important;
+  font-weight: 700;
+}
+
+.doctor-calendar .react-calendar__navigation button {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #1a202c;
+  min-width: 44px;
+}
+
+.doctor-calendar .react-calendar__navigation button:enabled:hover {
+  background-color: rgba(16, 185, 129, 0.1);
+}
+
+.doctor-calendar .react-calendar__month-view__weekdays {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #718096;
+  text-transform: uppercase;
+}
+
+.doctor-calendar .react-calendar__month-view__weekdays__weekday {
+  padding: 0.5rem;
+}
+
+.doctor-calendar .react-calendar__month-view__weekdays abbr {
+  text-decoration: none;
+}
+
+.doctor-calendar .react-calendar__month-view__days {
+  display: grid !important;
+  grid-template-columns: repeat(7, 1fr);
+}
+
+.doctor-calendar .react-calendar__viewContainer {
+  width: 100%;
+  max-width: 100%;
+}
+
+@media (max-width: 1279px) {
+  .doctor-calendar .react-calendar {
+    max-width: 400px;
+  }
+}
+
