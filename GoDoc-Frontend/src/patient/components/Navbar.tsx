@@ -54,6 +54,16 @@ const Navbar = () => {
                   Appointments
                 </Text>
               </Link>
+              <Link to="/patient/find-doctor">
+                <Text
+                  color={isActive('/patient/find-doctor') ? 'green.500' : 'gray.600'}
+                  fontWeight={isActive('/patient/find-doctor') ? '700' : '600'}
+                  cursor="pointer"
+                  _hover={{ color: 'green.600' }}
+                >
+                  Find a Doctor
+                </Text>
+              </Link>
               <Link to="/patient/medical-records">
                 <Text
                   color={isActive('/patient/medical-records') ? 'green.500' : 'gray.600'}
