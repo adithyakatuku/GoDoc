@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import {
   Box,
   Container,
@@ -31,6 +32,7 @@ interface Appointment {
 }
 
 const Appointments = () => {
+  const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState<'upcoming' | 'past'>('upcoming');
 
   const appointments: Appointment[] = [
@@ -106,13 +108,14 @@ const Appointments = () => {
             </Text>
           </Box>
           <Button
-            bg="#22c55e"
+            bg="#10b981"
             color="white"
             fontWeight="700"
             borderRadius="xl"
             px={6}
             py={3}
-            _hover={{ bg: '#16a34a' }}
+            _hover={{ bg: '#059669' }}
+            onClick={() => navigate('/patient/find-doctor')}
           >
             <Flex align="center" gap={2}>
               <Icon as={HiPlus} w={5} h={5} />
@@ -128,17 +131,17 @@ const Appointments = () => {
               variant="ghost"
               borderRadius="none"
               fontWeight="bold"
-              color={activeTab === 'upcoming' ? '#22c55e' : 'gray.600'}
-              borderBottom="3px solid"
-              borderBottomColor={
-                activeTab === 'upcoming' ? '#22c55e' : 'transparent'
-              }
-              mb="-3px"
-              px={6}
-              _hover={{
-                bg: 'transparent',
-                color: '#22c55e',
-              }}
+                    color={activeTab === 'upcoming' ? '#10b981' : 'gray.600'}
+                    borderBottom="3px solid"
+                    borderBottomColor={
+                      activeTab === 'upcoming' ? '#10b981' : 'transparent'
+                    }
+                    mb="-3px"
+                    px={6}
+                    _hover={{
+                      bg: 'transparent',
+                      color: '#10b981',
+                    }}
               onClick={() => setActiveTab('upcoming')}
             >
               Upcoming
@@ -147,17 +150,17 @@ const Appointments = () => {
               variant="ghost"
               borderRadius="none"
               fontWeight="bold"
-              color={activeTab === 'past' ? '#22c55e' : 'gray.600'}
-              borderBottom="3px solid"
-              borderBottomColor={
-                activeTab === 'past' ? '#22c55e' : 'transparent'
-              }
-              mb="-3px"
-              px={6}
-              _hover={{
-                bg: 'transparent',
-                color: '#22c55e',
-              }}
+                    color={activeTab === 'past' ? '#10b981' : 'gray.600'}
+                    borderBottom="3px solid"
+                    borderBottomColor={
+                      activeTab === 'past' ? '#10b981' : 'transparent'
+                    }
+                    mb="-3px"
+                    px={6}
+                    _hover={{
+                      bg: 'transparent',
+                      color: '#10b981',
+                    }}
               onClick={() => setActiveTab('past')}
             >
               Past
@@ -282,12 +285,12 @@ const Appointments = () => {
                   <Flex gap={2}>
                     <Button
                       flex={1}
-                      bg="rgba(34, 197, 94, 0.1)"
-                      color="#22c55e"
+                      bg="rgba(16, 185, 129, 0.1)"
+                      color="#10b981"
                       border="none"
                       fontWeight="700"
                       _hover={{
-                        bg: 'rgba(34, 197, 94, 0.2)',
+                        bg: 'rgba(16, 185, 129, 0.2)',
                       }}
                     >
                       Reschedule
@@ -310,7 +313,7 @@ const Appointments = () => {
           </Grid>
         ) : (
           <Box
-            bg="rgba(34, 197, 94, 0.05)"
+            bg="rgba(16, 185, 129, 0.05)"
             border="2px dashed"
             borderColor="#d1d5db"
             borderRadius="12px"
@@ -325,10 +328,10 @@ const Appointments = () => {
               w="80px"
               h="80px"
               borderRadius="full"
-              bg="rgba(34, 197, 94, 0.1)"
+              bg="rgba(16, 185, 129, 0.1)"
               mb={6}
             >
-              <Icon as={MdEventBusy} w={10} h={10} color="#22c55e" />
+              <Icon as={MdEventBusy} w={10} h={10} color="#10b981" />
             </Box>
             <Heading size="md" fontWeight="800" mb={2}>
               No appointments found

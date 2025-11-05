@@ -8,8 +8,11 @@ import {
   Grid,
   GridItem,
 } from '@chakra-ui/react';
+import { useNavigate } from 'react-router-dom';
 
 const PatientDashboard = () => {
+  const navigate = useNavigate();
+  
   return (
     <Box minH="100vh" bg="#e8f5f0">
       <Container maxW="container.xl" py={10} px={{ base: 6, md: 8, lg: 12 }}>
@@ -129,9 +132,10 @@ const PatientDashboard = () => {
                   border="none"
                   transition="all 0.2s ease"
                   _hover={{
-                    opacity: 0.9,
+                    bg: '#059669',
                     transform: 'translateY(-1px)',
                   }}
+                  onClick={() => navigate('/patient/find-doctor')}
                 >
                   Find a Doctor
                 </Button>
@@ -145,11 +149,12 @@ const PatientDashboard = () => {
                   border="none"
                   transition="all 0.2s ease"
                   _hover={{
-                    opacity: 0.9,
+                    bg: '#a8ead1',
                     transform: 'translateY(-1px)',
                   }}
+                  onClick={() => navigate('/patient/medical-records')}
                 >
-                  Find a Hospital
+                  Medical Records
                 </Button>
               </Flex>
             </Box>

@@ -57,18 +57,18 @@ const Navbar = () => {
 
               {/* Desktop Navigation */}
               <Flex gap={8} align="center" display={{ base: 'none', lg: 'flex' }} ml={8}>
-                {navLinks.map((link) => (
-                  <Link key={link.path} to={link.path}>
-                    <Text
-                      color={isActive(link.path) ? 'green.500' : 'gray.600'}
-                      fontWeight={isActive(link.path) ? '700' : '600'}
-                      cursor="pointer"
-                      _hover={{ color: 'green.600' }}
-                    >
-                      {link.label}
-                    </Text>
-                  </Link>
-                ))}
+              {navLinks.map((link) => (
+                <Link key={link.path} to={link.path}>
+                  <Text
+                    color={isActive(link.path) ? '#10b981' : 'gray.600'}
+                    fontWeight={isActive(link.path) ? '700' : '600'}
+                    cursor="pointer"
+                    _hover={{ color: '#10b981' }}
+                  >
+                    {link.label}
+                  </Text>
+                </Link>
+              ))}
               </Flex>
             </Flex>
 
@@ -154,11 +154,11 @@ const Navbar = () => {
               onClick={() => setIsMobileMenuOpen(false)}
             >
               <Text
-                color={isActive(link.path) ? 'green.500' : 'gray.600'}
+                color={isActive(link.path) ? '#10b981' : 'gray.600'}
                 fontWeight={isActive(link.path) ? '700' : '600'}
                 fontSize="lg"
                 cursor="pointer"
-                _hover={{ color: 'green.600' }}
+                _hover={{ color: '#10b981' }}
               >
                 {link.label}
               </Text>

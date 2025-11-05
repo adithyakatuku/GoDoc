@@ -148,8 +148,8 @@ const FindDoctor = () => {
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               _focus={{
-                borderColor: '#4CAF50',
-                boxShadow: '0 0 0 0.25rem rgba(76, 175, 80, 0.25)',
+                borderColor: '#10b981',
+                boxShadow: '0 0 0 0.25rem rgba(16, 185, 129, 0.25)',
               }}
             />
           </Box>
@@ -176,8 +176,8 @@ const FindDoctor = () => {
                     backgroundColor: '#F8F8F8',
                   }}
                   onFocus={(e) => {
-                    e.target.style.borderColor = '#4CAF50';
-                    e.target.style.boxShadow = '0 0 0 0.25rem rgba(76, 175, 80, 0.25)';
+                    e.target.style.borderColor = '#10b981';
+                    e.target.style.boxShadow = '0 0 0 0.25rem rgba(16, 185, 129, 0.25)';
                     e.target.style.outline = 'none';
                   }}
                   onBlur={(e) => {
@@ -210,8 +210,8 @@ const FindDoctor = () => {
                     backgroundColor: '#F8F8F8',
                   }}
                   onFocus={(e) => {
-                    e.target.style.borderColor = '#4CAF50';
-                    e.target.style.boxShadow = '0 0 0 0.25rem rgba(76, 175, 80, 0.25)';
+                    e.target.style.borderColor = '#10b981';
+                    e.target.style.boxShadow = '0 0 0 0.25rem rgba(16, 185, 129, 0.25)';
                     e.target.style.outline = 'none';
                   }}
                   onBlur={(e) => {
@@ -246,8 +246,8 @@ const FindDoctor = () => {
                     backgroundColor: '#F8F8F8',
                   }}
                   onFocus={(e) => {
-                    e.target.style.borderColor = '#4CAF50';
-                    e.target.style.boxShadow = '0 0 0 0.25rem rgba(76, 175, 80, 0.25)';
+                    e.target.style.borderColor = '#10b981';
+                    e.target.style.boxShadow = '0 0 0 0.25rem rgba(16, 185, 129, 0.25)';
                     e.target.style.outline = 'none';
                   }}
                   onBlur={(e) => {
@@ -280,8 +280,8 @@ const FindDoctor = () => {
                     backgroundColor: '#F8F8F8',
                   }}
                   onFocus={(e) => {
-                    e.target.style.borderColor = '#4CAF50';
-                    e.target.style.boxShadow = '0 0 0 0.25rem rgba(76, 175, 80, 0.25)';
+                    e.target.style.borderColor = '#10b981';
+                    e.target.style.boxShadow = '0 0 0 0.25rem rgba(16, 185, 129, 0.25)';
                     e.target.style.outline = 'none';
                   }}
                   onBlur={(e) => {
@@ -365,25 +365,25 @@ const FindDoctor = () => {
                     backgroundSize="cover"
                     backgroundPosition="center"
                     border="2px solid"
-                    borderColor="rgba(76, 175, 80, 0.5)"
+                    borderColor="rgba(16, 185, 129, 0.5)"
                   />
                   <Heading size="sm" fontWeight="800" mb={1}>
                     {doctor.name}
                   </Heading>
-                  <Text fontWeight="600" color="#4CAF50" mb={2}>
+                  <Text fontWeight="600" color="#10b981" mb={2}>
                     {doctor.specialty}
                   </Text>
                   <Text fontSize="sm" color="gray.600" mb={6}>
                     {doctor.location}
                   </Text>
                   <Button
-                    bg="#4CAF50"
+                    bg="#10b981"
                     color="white"
-                    borderColor="#4CAF50"
+                    borderColor="#10b981"
                     fontWeight="700"
                     mt="auto"
                     w="100%"
-                    _hover={{ bg: '#388E3C', borderColor: '#388E3C' }}
+                    _hover={{ bg: '#059669', borderColor: '#059669' }}
                     onClick={() => navigate(`/patient/find-doctor/${doctor.id}`)}
                   >
                     Book Appointment
@@ -394,7 +394,7 @@ const FindDoctor = () => {
           </Grid>
         ) : (
           <Box
-            bg="#F5F7FA"
+            bg="rgba(16, 185, 129, 0.05)"
             border="2px dashed"
             borderColor="#E0E0E0"
             borderRadius="12px"
@@ -406,7 +406,7 @@ const FindDoctor = () => {
               as={MdSearchOff}
               w={16}
               h={16}
-              color="rgba(76, 175, 80, 0.7)"
+              color="#10b981"
               mb={4}
             />
             <Heading size="md" fontWeight="800" mb={2}>

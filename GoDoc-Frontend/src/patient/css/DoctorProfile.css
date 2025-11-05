@@ -32,6 +32,10 @@
   font-weight: 700;
 }
 
+.doctor-calendar .react-calendar__tile--now {
+  background-color: rgba(16, 185, 129, 0.1);
+}
+
 .doctor-calendar .react-calendar__navigation button {
   font-size: 1rem;
   font-weight: 700;

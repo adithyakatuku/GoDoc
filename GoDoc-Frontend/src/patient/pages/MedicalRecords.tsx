@@ -133,22 +133,7 @@ const MedicalRecords = () => {
 
         {/* Records List */}
         <Grid templateColumns="1fr" gap={3}>
-          {filteredRecords.length === 0 ? (
-            <GridItem>
-              <Box
-                bg="white"
-                borderRadius="16px"
-                boxShadow="sm"
-                p={8}
-                textAlign="center"
-              >
-                <Text color="gray.600">
-                  No records found for this category.
-                </Text>
-              </Box>
-            </GridItem>
-          ) : (
-            filteredRecords.map((record) => (
+          {filteredRecords.map((record) => (
             <GridItem key={record.id}>
               <Box
                 bg="white"
@@ -266,8 +251,7 @@ const MedicalRecords = () => {
                 </Flex>
               </Box>
             </GridItem>
-          ))
-          )}
+          ))}
         </Grid>
       </Container>
     </Box>
