@@ -48,7 +48,7 @@ const DoctorNavbar = () => {
               </Box>
 
               {/* Logo */}
-              <Link to="/doctor/dashboard">
+              <Link to="/doctor/home">
                 <Flex gap={3} align="center" cursor="pointer" _hover={{ opacity: 0.8 }}>
                   <Image src={godocLogo} alt="GoDoc" h={10} />
                   <Heading size="md" color="gray.800" fontWeight="800">
