@@ -11,10 +11,12 @@ import {
 import { HiBell, HiMenu, HiX } from 'react-icons/hi';
 import { Link, useLocation } from 'react-router-dom';
 import godocLogo from '../../assets/godoc-logo.png';
+import NotificationsModal from '../../components/NotificationsModal';
 
 const DoctorNavbar = () => {
   const location = useLocation();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isNotificationsOpen, setIsNotificationsOpen] = useState(false);
 
   const isActive = (path: string) => {
     return location.pathname === path;
@@ -29,7 +31,7 @@ const DoctorNavbar = () => {
 
   return (
     <>
-      <Box bg="white" borderBottom="1px" borderColor="gray.200" py={4}>
+      <Box bg="white" borderBottom="1px" borderColor="gray.200" py={4} position="relative">
         <Container maxW="container.xl" px={{ base: 6, md: 8, lg: 12 }}>
           <Flex align="center" justify="space-between">
             {/* Left Side - Mobile Menu + Logo */}
@@ -79,9 +81,34 @@ const DoctorNavbar = () => {
                 as="button"
                 position="relative"
                 cursor="pointer"
-                _hover={{ opacity: 0.8 }}
+                w={10}
+                h={10}
+                borderRadius="full"
+                bg="rgba(16, 185, 129, 0.2)"
+                display="flex"
+                alignItems="center"
+                justifyContent="center"
+                _hover={{ bg: 'rgba(16, 185, 129, 0.3)' }}
+                onClick={() => setIsNotificationsOpen(!isNotificationsOpen)}
               >
-                <Icon as={HiBell} w={6} h={6} color="gray.600" />
+                <Icon as={HiBell} w={5} h={5} color="#10b981" />
+                <Box
+                  position="absolute"
+                  top="6px"
+                  right="6px"
+                  w={4}
+                  h={4}
+                  borderRadius="full"
+                  bg="red.500"
+                  display="flex"
+                  alignItems="center"
+                  justifyContent="center"
+                  fontSize="xs"
+                  fontWeight="700"
+                  color="white"
+                >
+                  4
+                </Box>
               </Box>
 
               {/* Profile Picture */}
@@ -106,6 +133,12 @@ const DoctorNavbar = () => {
             </Flex>
           </Flex>
         </Container>
+
+        {/* Notifications Modal */}
+        <NotificationsModal
+          isOpen={isNotificationsOpen}
+          onClose={() => setIsNotificationsOpen(false)}
+        />
       </Box>
 
       {/* Mobile Drawer Menu */}
