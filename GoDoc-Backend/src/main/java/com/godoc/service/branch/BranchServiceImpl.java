@@ -7,16 +7,15 @@ import com.godoc.service.branch.entity.BranchImage;
 import com.godoc.service.branch.repository.BranchImageRepository;
 import com.godoc.service.branch.repository.BranchRepository;
 import com.godoc.service.common.S3Utils;
+import com.godoc.service.credentials.CredentialService;
 import com.godoc.service.credentials.Role;
 import com.godoc.service.credentials.UserDetailsImpl;
 import com.godoc.service.credentials.entity.Credentials;
-import com.godoc.service.credentials.repository.CredentialsRepository;
 import com.godoc.service.hospital.entity.Hospital;
 import com.godoc.service.hospital.repository.HospitalRepository;
 import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -35,24 +34,18 @@ public class BranchServiceImpl implements BranchService{
     private BranchImageRepository branchImageRepository;
 
     @Autowired
-    private CredentialsRepository credentialsRepository;
-
-    private final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder(12);
+    private CredentialService credentialService;
 
     @PreAuthorize("hasAuthority('HOSPITAL')")
     @Override
     public RegisterBranchResponse registerBranch(RegisterBranchRequest request, UserDetailsImpl authenticatedHospital) throws Exception {
 
-        Credentials credentials = new Credentials();
-        credentials.setUsername(request.getEmail());
-        credentials.setPassword(passwordEncoder.encode(request.getPassword()));
-        credentials.setRoles(
+        Credentials credentials = credentialService.generateCredentials(
+                request.getEmail(), request.getPassword(),
                 Arrays.stream(Role.values())
-                        .filter(role -> !role.equals(Role.HOSPITAL))
-                        .map(Enum::name)
+                        .filter(role -> !role.equals(Role.HOSPITAL) && !role.equals(Role.PATIENT))
                         .toList()
         );
-        credentialsRepository.save(credentials);
 
         Hospital hospital = hospitalRepository.findByEmail(authenticatedHospital.getUsername());
 

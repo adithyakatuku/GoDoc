@@ -2,10 +2,10 @@ package com.godoc.service.doctor;
 
 import com.godoc.service.branch.entity.Branch;
 import com.godoc.service.branch.repository.BranchRepository;
+import com.godoc.service.credentials.CredentialService;
 import com.godoc.service.credentials.Role;
 import com.godoc.service.credentials.UserDetailsImpl;
 import com.godoc.service.credentials.entity.Credentials;
-import com.godoc.service.credentials.repository.CredentialsRepository;
 import com.godoc.service.doctor.dto.RegisterDoctorRequest;
 import com.godoc.service.doctor.dto.RegisterDoctorResponse;
 import com.godoc.service.doctor.entity.Doctor;
@@ -16,7 +16,6 @@ import com.godoc.service.hospital.entity.Hospital;
 import com.godoc.service.hospital.repository.HospitalRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -35,9 +34,7 @@ public class DoctorServiceImpl implements DoctorService{
     private DoctorRepository doctorRepository;
 
     @Autowired
-    private CredentialsRepository credentialsRepository;
-
-    private final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder(12);
+    private CredentialService credentialService;
 
     @PreAuthorize("hasAnyAuthority('HOSPITAL', 'BRANCH')")
     @Override
@@ -64,11 +61,9 @@ public class DoctorServiceImpl implements DoctorService{
             branchId = branch.getId();
         }
 
-        Credentials credentials = new Credentials();
-        credentials.setUsername(request.getEmail());
-        credentials.setPassword(passwordEncoder.encode(request.getPassword()));
-        credentials.setRoles(List.of(Role.DOCTOR.name()));
-        credentialsRepository.save(credentials);
+        Credentials credentials = credentialService.generateCredentials(
+                request.getEmail(), request.getPassword(), List.of(Role.DOCTOR)
+        );
 
         Doctor doctor = new Doctor();
         doctor.setName(request.getName());
