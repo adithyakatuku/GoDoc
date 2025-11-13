@@ -6,13 +6,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class CredentialService implements UserDetailsService {
 
     @Autowired
     private CredentialsRepository credentialsRepository;
+
+    private final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder(12);
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -34,5 +39,13 @@ public class CredentialService implements UserDetailsService {
         }
 
         return null;
+    }
+
+    public Credentials generateCredentials(String username, String password, List<Role> roles) {
+        Credentials credentials = new Credentials();
+        credentials.setUsername(username);
+        credentials.setPassword(passwordEncoder.encode(password));
+        credentials.setRoles(roles.stream().map((Enum::name)).toList());
+        return credentialsRepository.save(credentials);
     }
 }
