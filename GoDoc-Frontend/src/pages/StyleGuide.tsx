@@ -12,7 +12,7 @@ import {
   VStack,
   HStack,
 } from '@chakra-ui/react';
-import { buttonStyles, cardStyles, theme } from '../styles/theme';
+import { badgeStyles, buttonStyles, buttonStylesSecondary, cardStyles, tabStyles, theme } from '../styles/theme';
 
 const StyleGuide = () => {
   return (
@@ -229,21 +229,13 @@ const StyleGuide = () => {
               <VStack align="stretch" gap={4}>
                 <Box>
                   <Text fontSize="sm" fontWeight="600" color={theme.colors.text.secondary} mb={2}>
-                    Status Badges
+                    Status Badges (Using badgeStyles)
                   </Text>
                   <HStack gap={2} flexWrap="wrap">
-                    <Badge bg={theme.colors.status.successLight} color="#065f46" fontSize="xs" px={2.5} py={1} fontWeight="bold" textTransform="uppercase" letterSpacing="0.05em">
-                      Success
-                    </Badge>
-                    <Badge bg={theme.colors.status.warningLight} color="#92400e" fontSize="xs" px={2.5} py={1} fontWeight="bold" textTransform="uppercase" letterSpacing="0.05em">
-                      Warning
-                    </Badge>
-                    <Badge bg={theme.colors.status.errorLight} color="#991b1b" fontSize="xs" px={2.5} py={1} fontWeight="bold" textTransform="uppercase" letterSpacing="0.05em">
-                      Error
-                    </Badge>
-                    <Badge bg={theme.colors.status.infoLight} color="#1e40af" fontSize="xs" px={2.5} py={1} fontWeight="bold" textTransform="uppercase" letterSpacing="0.05em">
-                      Info
-                    </Badge>
+                    <Badge {...badgeStyles.success}>Success</Badge>
+                    <Badge {...badgeStyles.warning}>Warning</Badge>
+                    <Badge {...badgeStyles.error}>Error</Badge>
+                    <Badge {...badgeStyles.info}>Info</Badge>
                   </HStack>
                 </Box>
 
@@ -252,16 +244,92 @@ const StyleGuide = () => {
                     Appointment Status Badges
                   </Text>
                   <HStack gap={2} flexWrap="wrap">
-                    <Badge bg="#d1fae5" color="#065f46" fontSize="xs" px={2.5} py={1} fontWeight="bold" textTransform="uppercase" letterSpacing="0.05em">
-                      Confirmed
-                    </Badge>
-                    <Badge bg="#fef3c7" color="#92400e" fontSize="xs" px={2.5} py={1} fontWeight="bold" textTransform="uppercase" letterSpacing="0.05em">
-                      Pending
-                    </Badge>
-                    <Badge bg="#fee2e2" color="#991b1b" fontSize="xs" px={2.5} py={1} fontWeight="bold" textTransform="uppercase" letterSpacing="0.05em">
-                      Cancelled
-                    </Badge>
+                    <Badge {...badgeStyles.success}>Confirmed</Badge>
+                    <Badge {...badgeStyles.warning}>Pending</Badge>
+                    <Badge {...badgeStyles.error}>Cancelled</Badge>
                   </HStack>
+                </Box>
+              </VStack>
+            </Box>
+          </GridItem>
+
+          {/* Tabs Section */}
+          <GridItem>
+            <Box {...cardStyles.default} mb={6}>
+              <Heading size="lg" fontWeight="800" color={theme.colors.text.primary} mb={6}>
+                Tabs
+              </Heading>
+
+              <VStack align="stretch" gap={4}>
+                <Box>
+                  <Text fontSize="sm" fontWeight="600" color={theme.colors.text.secondary} mb={2}>
+                    Tab Buttons (Using tabStyles)
+                  </Text>
+                  <Flex gap={2} flexWrap="wrap">
+                    <Button {...tabStyles.default} {...tabStyles.active}>
+                      Active Tab
+                    </Button>
+                    <Button {...tabStyles.default} {...tabStyles.inactive}>
+                      Inactive Tab
+                    </Button>
+                    <Button {...tabStyles.default} {...tabStyles.inactive}>
+                      Another Tab
+                    </Button>
+                  </Flex>
+                </Box>
+
+                <Box>
+                  <Text fontSize="sm" fontWeight="600" color={theme.colors.text.secondary} mb={2}>
+                    Underline Tabs (For Appointments page)
+                  </Text>
+                  <Flex borderBottom="3px solid" borderColor={theme.colors.border.light} mb={4}>
+                    <Button
+                      variant="ghost"
+                      borderRadius="none"
+                      fontWeight={theme.typography.fontWeight.bold}
+                      color={theme.colors.primary[600]}
+                      borderBottom="3px solid"
+                      borderBottomColor={theme.colors.primary[600]}
+                      mb="-3px"
+                      px={6}
+                      _hover={{ bg: 'transparent', color: theme.colors.primary[600] }}
+                    >
+                      Active
+                    </Button>
+                    <Button
+                      variant="ghost"
+                      borderRadius="none"
+                      fontWeight={theme.typography.fontWeight.bold}
+                      color={theme.colors.text.secondary}
+                      borderBottom="3px solid"
+                      borderBottomColor="transparent"
+                      mb="-3px"
+                      px={6}
+                      _hover={{ bg: 'transparent', color: theme.colors.primary[600] }}
+                    >
+                      Inactive
+                    </Button>
+                  </Flex>
+                </Box>
+              </VStack>
+            </Box>
+          </GridItem>
+
+          {/* Secondary Buttons Section */}
+          <GridItem>
+            <Box {...cardStyles.default} mb={6}>
+              <Heading size="lg" fontWeight="800" color={theme.colors.text.primary} mb={6}>
+                Secondary Buttons
+              </Heading>
+
+              <VStack align="stretch" gap={4}>
+                <Box>
+                  <Text fontSize="sm" fontWeight="600" color={theme.colors.text.secondary} mb={2}>
+                    Light Green Button (Medical Records style)
+                  </Text>
+                  <Button {...buttonStylesSecondary.lightGreen} w="100%">
+                    Medical Records
+                  </Button>
                 </Box>
               </VStack>
             </Box>

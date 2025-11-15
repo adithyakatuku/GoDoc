@@ -18,6 +18,7 @@ import {
   HiOutlineChartBar,
   HiClock,
 } from 'react-icons/hi';
+import { cardStyles, tabStyles, theme } from '../../styles/theme';
 
 interface Record {
   id: number;
@@ -96,13 +97,13 @@ const MedicalRecords = () => {
         });
 
   return (
-    <Box minH="100vh" bg="#e8f5f0">
+    <Box minH="100vh" bg={theme.colors.background.tertiary}>
       <Container maxW="container.xl" py={10} px={{ base: 6, md: 8, lg: 12 }}>
         <Box mb={6}>
-          <Heading size="lg" fontWeight="800" mb={2} color="gray.800">
+          <Heading size="lg" fontWeight={theme.typography.fontWeight.extrabold} mb={2} color={theme.colors.text.primary}>
             Medical Records
           </Heading>
-          <Text color="gray.600">
+          <Text color={theme.colors.text.secondary}>
             Access and manage your prescriptions, reports, and medical history.
           </Text>
         </Box>
@@ -113,18 +114,8 @@ const MedicalRecords = () => {
             <Button
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
-              bg={activeTab === tab.id ? '#10b981' : 'white'}
-              color={activeTab === tab.id ? 'white' : 'gray.600'}
-              border="1px solid"
-              borderColor={activeTab === tab.id ? '#10b981' : '#e2e8f0'}
-              fontWeight="600"
-              borderRadius="md"
-              px={6}
-              py={2}
-              _hover={{
-                bg: activeTab === tab.id ? '#10b981' : '#f7fafc',
-                borderColor: activeTab === tab.id ? '#10b981' : '#e2e8f0',
-              }}
+              {...tabStyles.default}
+              {...(activeTab === tab.id ? tabStyles.active : tabStyles.inactive)}
             >
               {tab.label}
             </Button>
@@ -136,15 +127,8 @@ const MedicalRecords = () => {
           {filteredRecords.map((record) => (
             <GridItem key={record.id}>
               <Box
-                bg="white"
-                borderRadius="16px"
-                boxShadow="sm"
-                p={6}
+                {...cardStyles.default}
                 opacity={record.archived ? 0.75 : 1}
-                transition="all 0.3s ease"
-                _hover={{
-                  boxShadow: '0 0.5rem 1rem rgba(0, 0, 0, 0.15)',
-                }}
               >
                 <Flex align="center" gap={4}>
                   {/* Icon */}

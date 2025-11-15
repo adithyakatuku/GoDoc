@@ -22,6 +22,7 @@ import {
 import DailyView from '../components/schedule/DailyView';
 import WeeklyView from '../components/schedule/WeeklyView';
 import MonthlyView from '../components/schedule/MonthlyView';
+import { buttonStyles, cardStyles, theme } from '../../styles/theme';
 
 interface ScheduleEvent {
   id: number;
@@ -180,21 +181,21 @@ const Schedule = () => {
   const weekDates = getWeekDates(currentDate);
 
   return (
-    <Box minH="100vh" bg="#e8f5f0">
+    <Box minH="100vh" bg={theme.colors.background.tertiary}>
       <Container maxW="container.xl" py={8} px={{ base: 6, md: 8, lg: 12 }}>
         {/* Header */}
         <Flex justify="space-between" align="center" mb={6} flexWrap="wrap" gap={4}>
-          <Heading size="2xl" fontWeight="800" color="gray.800">
+          <Heading size="2xl" fontWeight={theme.typography.fontWeight.extrabold} color={theme.colors.text.primary}>
             My Schedule
           </Heading>
           <Button
-            bg="gray.800"
-            color="white"
-            fontWeight="600"
-            borderRadius="md"
+            bg={theme.colors.text.primary}
+            color={theme.colors.text.inverse}
+            fontWeight={theme.typography.fontWeight.semibold}
+            borderRadius={theme.borderRadius.md}
             px={4}
             h={10}
-            _hover={{ bg: 'gray.700' }}
+            _hover={{ bg: '#374151' }}
           >
             <Flex align="center" gap={2}>
               <Icon as={HiPlus} w={4} h={4} />
@@ -209,10 +210,7 @@ const Schedule = () => {
             <Flex direction="column" gap={4}>
               {/* View Toggle and Controls */}
               <Box
-                bg="white"
-                borderRadius="lg"
-                border="1px"
-                borderColor="gray.200"
+                {...cardStyles.default}
                 p={3}
               >
                 <Flex
@@ -223,8 +221,8 @@ const Schedule = () => {
                 >
                   {/* View Toggle */}
                   <Flex
-                    bg="gray.100"
-                    borderRadius="md"
+                    bg={theme.colors.background.secondary}
+                    borderRadius={theme.borderRadius.md}
                     p={1}
                     w={{ base: '100%', sm: 'auto' }}
                     gap={1}
@@ -232,14 +230,14 @@ const Schedule = () => {
                     <Button
                       px={6}
                       h={9}
-                      bg={view === 'daily' ? 'white' : 'transparent'}
-                      color={view === 'daily' ? 'gray.800' : 'gray.500'}
+                      bg={view === 'daily' ? theme.colors.background.primary : 'transparent'}
+                      color={view === 'daily' ? theme.colors.text.primary : theme.colors.text.tertiary}
                       boxShadow="none"
-                      fontWeight="600"
+                      fontWeight={theme.typography.fontWeight.semibold}
                       fontSize="sm"
-                      borderRadius="md"
+                      borderRadius={theme.borderRadius.md}
                       border="none"
-                      _hover={{ bg: view === 'daily' ? 'white' : 'gray.200' }}
+                      _hover={{ bg: view === 'daily' ? theme.colors.background.primary : '#e5e7eb' }}
                       onClick={() => setView('daily')}
                     >
                       Daily
@@ -247,14 +245,14 @@ const Schedule = () => {
                     <Button
                       px={6}
                       h={9}
-                      bg={view === 'weekly' ? 'white' : 'transparent'}
-                      color={view === 'weekly' ? 'gray.800' : 'gray.500'}
+                      bg={view === 'weekly' ? theme.colors.background.primary : 'transparent'}
+                      color={view === 'weekly' ? theme.colors.text.primary : theme.colors.text.tertiary}
                       boxShadow="none"
-                      fontWeight="600"
+                      fontWeight={theme.typography.fontWeight.semibold}
                       fontSize="sm"
-                      borderRadius="md"
+                      borderRadius={theme.borderRadius.md}
                       border="none"
-                      _hover={{ bg: view === 'weekly' ? 'white' : 'gray.200' }}
+                      _hover={{ bg: view === 'weekly' ? theme.colors.background.primary : '#e5e7eb' }}
                       onClick={() => setView('weekly')}
                     >
                       Weekly
@@ -262,14 +260,14 @@ const Schedule = () => {
                     <Button
                       px={6}
                       h={9}
-                      bg={view === 'monthly' ? 'white' : 'transparent'}
-                      color={view === 'monthly' ? 'gray.800' : 'gray.500'}
+                      bg={view === 'monthly' ? theme.colors.background.primary : 'transparent'}
+                      color={view === 'monthly' ? theme.colors.text.primary : theme.colors.text.tertiary}
                       boxShadow="none"
-                      fontWeight="600"
+                      fontWeight={theme.typography.fontWeight.semibold}
                       fontSize="sm"
-                      borderRadius="md"
+                      borderRadius={theme.borderRadius.md}
                       border="none"
-                      _hover={{ bg: view === 'monthly' ? 'white' : 'gray.200' }}
+                      _hover={{ bg: view === 'monthly' ? theme.colors.background.primary : '#e5e7eb' }}
                       onClick={() => setView('monthly')}
                     >
                       Monthly
@@ -286,9 +284,9 @@ const Schedule = () => {
                       alignItems="center"
                       justifyContent="center"
                       borderRadius="full"
-                      bg="gray.100"
-                      color="gray.600"
-                      _hover={{ bg: 'gray.200' }}
+                      bg={theme.colors.background.secondary}
+                      color={theme.colors.text.secondary}
+                      _hover={{ bg: '#e5e7eb' }}
                     >
                       <Icon as={HiChevronLeft} w={5} h={5} />
                     </Box>
@@ -300,27 +298,23 @@ const Schedule = () => {
                       alignItems="center"
                       justifyContent="center"
                       borderRadius="full"
-                      bg="gray.100"
-                      color="gray.600"
-                      _hover={{ bg: 'gray.200' }}
+                      bg={theme.colors.background.secondary}
+                      color={theme.colors.text.secondary}
+                      _hover={{ bg: '#e5e7eb' }}
                     >
                       <Icon as={HiChevronRight} w={5} h={5} />
                     </Box>
-                    <Button
-                      bg="#10b981"
-                      color="white"
-                      fontWeight="600"
-                      borderRadius="md"
-                      px={4}
-                      h={9}
-                      ml={2}
-                      _hover={{ bg: '#059669' }}
-                    >
-                      <Flex align="center" gap={2}>
-                        <Icon as={HiCog} w={4} h={4} />
-                        <Text fontSize="sm">Set Availability</Text>
-                      </Flex>
-                    </Button>
+                          <Button
+                            {...buttonStyles.success}
+                            px={4}
+                            h={9}
+                            ml={2}
+                          >
+                            <Flex align="center" gap={2}>
+                              <Icon as={HiCog} w={4} h={4} />
+                              <Text fontSize="sm">Set Availability</Text>
+                            </Flex>
+                          </Button>
                   </Flex>
                 </Flex>
               </Box>
@@ -343,45 +337,42 @@ const Schedule = () => {
             <Flex direction="column" gap={6}>
               {/* Schedule Overview */}
               <Box
-                bg="white"
-                borderRadius="lg"
+                {...cardStyles.default}
                 p={5}
-                border="1px"
-                borderColor="gray.200"
               >
-                <Text fontSize="md" fontWeight="700" color="gray.700" mb={4}>
+                <Text fontSize="md" fontWeight={theme.typography.fontWeight.bold} color={theme.colors.text.secondary} mb={4}>
                   Schedule Overview
                 </Text>
                 <Grid
                   templateColumns={{ base: 'repeat(2, 1fr)', sm: 'repeat(3, 1fr)', lg: 'repeat(2, 1fr)' }}
                   gap={3}
                 >
-                  <Box bg="gray.100" p={3} borderRadius="md">
-                    <Text fontSize="3xl" fontWeight="800" color="gray.800">
+                  <Box bg={theme.colors.background.secondary} p={3} borderRadius={theme.borderRadius.md}>
+                    <Text fontSize="3xl" fontWeight={theme.typography.fontWeight.extrabold} color={theme.colors.text.primary}>
                       5
                     </Text>
-                    <Text fontSize="sm" fontWeight="500" color="gray.500" mt={1}>
+                    <Text fontSize="sm" fontWeight={theme.typography.fontWeight.medium} color={theme.colors.text.tertiary} mt={1}>
                       Today's Appts
                     </Text>
                   </Box>
-                  <Box bg="gray.100" p={3} borderRadius="md">
-                    <Text fontSize="3xl" fontWeight="800" color="gray.800">
+                  <Box bg={theme.colors.background.secondary} p={3} borderRadius={theme.borderRadius.md}>
+                    <Text fontSize="3xl" fontWeight={theme.typography.fontWeight.extrabold} color={theme.colors.text.primary}>
                       28
                     </Text>
-                    <Text fontSize="sm" fontWeight="500" color="gray.500" mt={1}>
+                    <Text fontSize="sm" fontWeight={theme.typography.fontWeight.medium} color={theme.colors.text.tertiary} mt={1}>
                       Weekly Patients
                     </Text>
                   </Box>
                   <Box
-                    bg="gray.100"
+                    bg={theme.colors.background.secondary}
                     p={3}
-                    borderRadius="md"
+                    borderRadius={theme.borderRadius.md}
                     gridColumn={{ base: 'span 2', sm: 'span 1', lg: 'span 2' }}
                   >
-                    <Text fontSize="3xl" fontWeight="800" color="gray.800">
+                    <Text fontSize="3xl" fontWeight={theme.typography.fontWeight.extrabold} color={theme.colors.text.primary}>
                       12
                     </Text>
-                    <Text fontSize="sm" fontWeight="500" color="gray.500" mt={1}>
+                    <Text fontSize="sm" fontWeight={theme.typography.fontWeight.medium} color={theme.colors.text.tertiary} mt={1}>
                       Open Slots (Week)
                     </Text>
                   </Box>
@@ -390,13 +381,10 @@ const Schedule = () => {
 
               {/* Upcoming Appointments */}
               <Box
-                bg="white"
-                borderRadius="lg"
+                {...cardStyles.default}
                 p={5}
-                border="1px"
-                borderColor="gray.200"
               >
-                <Text fontSize="md" fontWeight="700" color="gray.700" mb={4}>
+                <Text fontSize="md" fontWeight={theme.typography.fontWeight.bold} color={theme.colors.text.secondary} mb={4}>
                   Upcoming
                 </Text>
                 <Flex direction="column" gap={4}>
@@ -405,12 +393,12 @@ const Schedule = () => {
                       <Box
                         bg={
                           appointment.isToday
-                            ? '#10b981'
-                            : 'gray.100'
+                            ? theme.colors.primary[600]
+                            : theme.colors.background.secondary
                         }
-                        color={appointment.isToday ? 'white' : 'gray.600'}
-                        fontWeight="700"
-                        borderRadius="md"
+                        color={appointment.isToday ? theme.colors.text.inverse : theme.colors.text.secondary}
+                        fontWeight={theme.typography.fontWeight.bold}
+                        borderRadius={theme.borderRadius.md}
                         display="flex"
                         flexDirection="column"
                         alignItems="center"
@@ -425,10 +413,10 @@ const Schedule = () => {
                         <Text fontSize="2xl" lineHeight="1">{appointment.date}</Text>
                       </Box>
                       <Box>
-                        <Text fontWeight="700" fontSize="sm" color="gray.800">
+                        <Text fontWeight={theme.typography.fontWeight.bold} fontSize="sm" color={theme.colors.text.primary}>
                           {appointment.patientName}
                         </Text>
-                        <Text fontSize="xs" color="gray.500" mt={0.5}>
+                        <Text fontSize="xs" color={theme.colors.text.tertiary} mt={0.5}>
                           {appointment.time} - {appointment.type}
                         </Text>
                       </Box>
@@ -439,11 +427,8 @@ const Schedule = () => {
 
               {/* Mini Calendar */}
               <Box
-                bg="white"
-                borderRadius="lg"
+                {...cardStyles.default}
                 p={4}
-                border="1px"
-                borderColor="gray.200"
                 className="schedule-mini-calendar"
               >
                 <Calendar

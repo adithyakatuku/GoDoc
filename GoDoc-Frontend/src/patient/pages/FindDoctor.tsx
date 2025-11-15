@@ -14,6 +14,7 @@ import {
 } from '@chakra-ui/react';
 import { HiSearch, HiRefresh } from 'react-icons/hi';
 import { MdSearchOff } from 'react-icons/md';
+import { buttonStyles, cardStyles, theme } from '../../styles/theme';
 
 interface Doctor {
   id: number;
@@ -105,24 +106,19 @@ const FindDoctor = () => {
   };
 
   return (
-    <Box minH="100vh" bg="#e8f5f0">
+    <Box minH="100vh" bg={theme.colors.background.tertiary}>
       <Container maxW="container.xl" py={10} px={{ base: 6, md: 8, lg: 12 }}>
         {/* Header */}
         <Box mb={6}>
-          <Heading size="xl" fontWeight="800" mb={2} color="gray.800">
+          <Heading size="xl" fontWeight={theme.typography.fontWeight.extrabold} mb={2} color={theme.colors.text.primary}>
             Search Doctors & Specialists
           </Heading>
-          <Text color="gray.600">Find the right doctor for your needs.</Text>
+          <Text color={theme.colors.text.secondary}>Find the right doctor for your needs.</Text>
         </Box>
 
         {/* Search and Filters Card */}
         <Box
-          bg="white"
-          borderRadius="12px"
-          boxShadow="md"
-          border="1px solid"
-          borderColor="gray.200"
-          p={6}
+          {...cardStyles.elevated}
           mb={6}
         >
           {/* Search Input */}
@@ -133,23 +129,25 @@ const FindDoctor = () => {
               left={4}
               top="50%"
               transform="translateY(-50%)"
-              color="gray.400"
+              color={theme.colors.text.tertiary}
               w={5}
               h={5}
-              zIndex={1}
+              zIndex={2}
+              pointerEvents="none"
             />
             <Input
               placeholder="Search by name, specialty..."
-              pl={12}
-              borderRadius="8px"
-              bg="#F8F8F8"
+              borderRadius={theme.borderRadius.md}
+              bg={theme.colors.background.secondary}
               border="1px solid"
-              borderColor="#e2e8f0"
+              borderColor={theme.colors.border.light}
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
+              className="search-input"
+              data-search-input="true"
               _focus={{
-                borderColor: '#10b981',
-                boxShadow: '0 0 0 0.25rem rgba(16, 185, 129, 0.25)',
+                borderColor: theme.colors.primary[600],
+                boxShadow: `0 0 0 0.25rem ${theme.colors.primary[200]}`,
               }}
             />
           </Box>
@@ -314,22 +312,15 @@ const FindDoctor = () => {
             </Text>{' '}
             doctors
           </Text>
-          <Button
-            bg="white"
-            color="gray.600"
-            border="1px solid"
-            borderColor="gray.300"
-            borderRadius="md"
-            px={5}
-            py={2}
-            onClick={handleReset}
-            _hover={{ bg: 'gray.50' }}
-          >
-            <Flex align="center" gap={2}>
-              <Icon as={HiRefresh} w={5} h={5} />
-              <Text>Reset</Text>
-            </Flex>
-          </Button>
+                 <Button
+                   {...buttonStyles.secondary}
+                   onClick={handleReset}
+                 >
+                   <Flex align="center" gap={2}>
+                     <Icon as={HiRefresh} w={5} h={5} />
+                     <Text>Reset</Text>
+                   </Flex>
+                 </Button>
         </Flex>
 
         {/* Doctors Grid */}
@@ -340,21 +331,13 @@ const FindDoctor = () => {
           >
             {filteredDoctors.map((doctor) => (
               <GridItem key={doctor.id}>
-                <Box
-                  bg="white"
-                  borderRadius="12px"
-                  boxShadow="sm"
-                  textAlign="center"
-                  p={6}
-                  h="100%"
-                  display="flex"
-                  flexDirection="column"
-                  transition="all 0.3s ease"
-                  _hover={{
-                    transform: 'translateY(-4px)',
-                    boxShadow: '0 0.5rem 1.5rem rgba(0, 0, 0, 0.15)',
-                  }}
-                >
+                       <Box
+                         {...cardStyles.interactive}
+                         textAlign="center"
+                         h="100%"
+                         display="flex"
+                         flexDirection="column"
+                       >
                   <Box
                     w="96px"
                     h="96px"
@@ -376,18 +359,14 @@ const FindDoctor = () => {
                   <Text fontSize="sm" color="gray.600" mb={6}>
                     {doctor.location}
                   </Text>
-                  <Button
-                    bg="#10b981"
-                    color="white"
-                    borderColor="#10b981"
-                    fontWeight="700"
-                    mt="auto"
-                    w="100%"
-                    _hover={{ bg: '#059669', borderColor: '#059669' }}
-                    onClick={() => navigate(`/patient/find-doctor/${doctor.id}`)}
-                  >
-                    Book Appointment
-                  </Button>
+                         <Button
+                           {...buttonStyles.success}
+                           mt="auto"
+                           w="100%"
+                           onClick={() => navigate(`/patient/find-doctor/${doctor.id}`)}
+                         >
+                           Book Appointment
+                         </Button>
                 </Box>
               </GridItem>
             ))}

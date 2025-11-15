@@ -454,9 +454,20 @@ input[data-part="input"] {
 }
 
 /* Target all input elements that are part of Chakra UI Input component */
-input:not([type="checkbox"]):not([type="radio"]):not([type="file"]):not([type="range"]):not([type="submit"]):not([type="button"]):not([type="reset"]) {
+input:not([type="checkbox"]):not([type="radio"]):not([type="file"]):not([type="range"]):not([type="submit"]):not([type="button"]):not([type="reset"]):not(.search-input) {
   padding-left: 20px !important;
   padding-right: 20px !important;
+}
+
+/* Exception: Search inputs with icons (icon positioned absolutely) */
+input.search-input,
+input[data-search-input="true"],
+[data-part="input"].search-input,
+[data-part="input"][data-search-input="true"],
+.search-input input,
+.search-input [data-part="input"] {
+  padding-left: 48px !important;
+  padding-right: 16px !important;
 }
 
 /* ============================================

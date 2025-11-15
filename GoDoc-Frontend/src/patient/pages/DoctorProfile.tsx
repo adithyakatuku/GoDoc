@@ -14,6 +14,7 @@ import {
   Button,
   Image,
 } from '@chakra-ui/react';
+import { buttonStyles, cardStyles, theme } from '../../styles/theme';
 
 type ValuePiece = Date | null;
 type Value = ValuePiece | [ValuePiece, ValuePiece];
@@ -51,14 +52,11 @@ const DoctorProfile = () => {
   ];
 
   return (
-    <Box minH="100vh" bg="#e8f5f0">
+    <Box minH="100vh" bg={theme.colors.background.tertiary}>
       <Container maxW="container.xl" py={10} px={{ base: 6, md: 8, lg: 12 }}>
         {/* Doctor Profile Card */}
         <Box
-          bg="white"
-          borderRadius="16px"
-          boxShadow="sm"
-          p={8}
+          {...cardStyles.large}
         >
           <Flex gap={6} mb={6} flexDir={{ base: 'column', sm: 'row' }}>
             <Box
@@ -77,31 +75,31 @@ const DoctorProfile = () => {
               />
             </Box>
             <Box flex={1}>
-              <Heading size="lg" fontWeight="800" mb={2} color="gray.800">
+              <Heading size="lg" fontWeight={theme.typography.fontWeight.extrabold} mb={2} color={theme.colors.text.primary}>
                 {doctor.name}
               </Heading>
-              <Text fontSize="md" color="gray.600" mb={2}>
+              <Text fontSize="md" color={theme.colors.text.secondary} mb={2}>
                 {doctor.specialty}
               </Text>
-              <Text fontSize="sm" color="gray.500">
+              <Text fontSize="sm" color={theme.colors.text.tertiary}>
                 {doctor.address}
               </Text>
             </Box>
             </Flex>
 
             {/* Tabs */}
-            <Flex borderBottom="2px solid" borderColor="gray.200" mb={6} px={4}>
+            <Flex borderBottom="2px solid" borderColor={theme.colors.border.light} mb={6} px={4}>
               {tabs.map((tab) => (
                 <Button
                   key={tab.id}
                   variant="ghost"
                   borderRadius="none"
-                  fontWeight="700"
+                  fontWeight={theme.typography.fontWeight.bold}
                   fontSize="sm"
-                  color={activeTab === tab.id ? '#10b981' : 'gray.600'}
+                  color={activeTab === tab.id ? theme.colors.primary[600] : theme.colors.text.secondary}
                   borderBottom="2px solid"
                   borderBottomColor={
-                    activeTab === tab.id ? '#10b981' : 'transparent'
+                    activeTab === tab.id ? theme.colors.primary[600] : 'transparent'
                   }
                   mb="-2px"
                   px={0}
@@ -110,8 +108,8 @@ const DoctorProfile = () => {
                   pt={2}
                   _hover={{
                     bg: 'transparent',
-                    color: '#10b981',
-                    borderBottomColor: '#10b981',
+                    color: theme.colors.primary[600],
+                    borderBottomColor: theme.colors.primary[600],
                   }}
                   onClick={() => setActiveTab(tab.id as 'about' | 'reviews')}
                 >
@@ -126,17 +124,17 @@ const DoctorProfile = () => {
                 {/* Left: About & Availability */}
                 <GridItem>
                 <Box mb={8}>
-                  <Heading size="md" fontWeight="800" mb={3} color="gray.800">
+                  <Heading size="md" fontWeight={theme.typography.fontWeight.extrabold} mb={3} color={theme.colors.text.primary}>
                     About
                   </Heading>
-                  <Text color="gray.700" lineHeight="tall">
+                  <Text color={theme.colors.text.secondary} lineHeight="tall">
                     {doctor.about}
                   </Text>
                 </Box>
 
                 {/* Availability Section */}
                 <Box>
-                  <Heading size="md" fontWeight="800" mb={6} color="gray.800">
+                  <Heading size="md" fontWeight={theme.typography.fontWeight.extrabold} mb={6} color={theme.colors.text.primary}>
                     Availability
                   </Heading>
 
@@ -156,14 +154,12 @@ const DoctorProfile = () => {
                 {/* Right: Time Selection */}
                 <GridItem>
                   <Box
-                    bg="gray.50"
-                    borderRadius="16px"
-                    boxShadow="sm"
-                    p={6}
+                    {...cardStyles.default}
+                    bg={theme.colors.background.secondary}
                     position="sticky"
                     top={4}
                   >
-                    <Heading size="md" fontWeight="800" mb={6} color="gray.800">
+                    <Heading size="md" fontWeight={theme.typography.fontWeight.extrabold} mb={6} color={theme.colors.text.primary}>
                       Select a time
                     </Heading>
 
@@ -174,18 +170,18 @@ const DoctorProfile = () => {
                         return (
                           <Button
                             key={time}
-                            bg={isSelected ? 'rgba(16, 185, 129, 0.1)' : 'white'}
-                            color={isSelected ? '#10b981' : 'gray.700'}
+                            bg={isSelected ? theme.colors.primary[100] : theme.colors.background.primary}
+                            color={isSelected ? theme.colors.primary[600] : theme.colors.text.secondary}
                             border="1px solid"
-                            borderColor={isSelected ? '#10b981' : 'gray.200'}
-                            fontWeight={isSelected ? '700' : '500'}
-                            borderRadius="lg"
+                            borderColor={isSelected ? theme.colors.primary[600] : theme.colors.border.light}
+                            fontWeight={isSelected ? theme.typography.fontWeight.bold : theme.typography.fontWeight.medium}
+                            borderRadius={theme.borderRadius.lg}
                             px={4}
                             py={2}
                             fontSize="sm"
                             _hover={{
-                              borderColor: '#10b981',
-                              bg: 'rgba(16, 185, 129, 0.1)',
+                              borderColor: theme.colors.primary[600],
+                              bg: theme.colors.primary[100],
                             }}
                             onClick={() => setSelectedTime(time)}
                           >
@@ -197,16 +193,8 @@ const DoctorProfile = () => {
 
                     {/* Book Appointment Button */}
                     <Button
+                      {...buttonStyles.success}
                       w="100%"
-                      bg="#10b981"
-                      color="white"
-                      fontWeight="700"
-                      borderRadius="lg"
-                      py={3}
-                      fontSize="md"
-                      _hover={{
-                        bg: '#059669',
-                      }}
                     >
                       Book Appointment
                     </Button>
@@ -215,10 +203,10 @@ const DoctorProfile = () => {
               </Grid>
             ) : (
               <Box w="100%">
-                <Heading size="md" fontWeight="800" mb={4} color="gray.800">
+                <Heading size="md" fontWeight={theme.typography.fontWeight.extrabold} mb={4} color={theme.colors.text.primary}>
                   Reviews
                 </Heading>
-                <Text color="gray.600">
+                <Text color={theme.colors.text.secondary}>
                   No reviews yet. Be the first to review this doctor!
                 </Text>
               </Box>

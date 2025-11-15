@@ -19,6 +19,7 @@ import {
   HiOutlineLocationMarker,
 } from 'react-icons/hi';
 import { MdEventBusy } from 'react-icons/md';
+import { badgeStyles, buttonStyles, cardStyles, theme } from '../../styles/theme';
 
 interface Appointment {
   id: number;
@@ -65,31 +66,22 @@ const Appointments = () => {
   });
 
   const getStatusBadge = (status: string) => {
-    const styles = {
-      confirmed: { bg: '#d1fae5', color: '#065f46' },
-      pending: { bg: '#fef3c7', color: '#92400e' },
-      cancelled: { bg: '#fee2e2', color: '#991b1b' },
+    const badgeMap: Record<string, keyof typeof badgeStyles> = {
+      confirmed: 'success',
+      pending: 'warning',
+      cancelled: 'error',
     };
-    const style = styles[status as keyof typeof styles] || styles.confirmed;
+    const badgeType = badgeMap[status] || 'success';
 
     return (
-      <Badge
-        bg={style.bg}
-        color={style.color}
-        fontSize="0.75rem"
-        px={2.5}
-        py={1}
-        fontWeight="bold"
-        textTransform="uppercase"
-        letterSpacing="0.05em"
-      >
+      <Badge {...badgeStyles[badgeType]}>
         {status}
       </Badge>
     );
   };
 
   return (
-    <Box minH="100vh" bg="#e8f5f0">
+    <Box minH="100vh" bg={theme.colors.background.tertiary}>
       <Container maxW="container.xl" py={8} px={{ base: 6, md: 8, lg: 12 }}>
         {/* Header */}
         <Flex
@@ -100,21 +92,15 @@ const Appointments = () => {
           mb={6}
         >
           <Box>
-            <Heading size="xl" fontWeight="800" mb={2} color="gray.800">
+            <Heading size="xl" fontWeight={theme.typography.fontWeight.extrabold} mb={2} color={theme.colors.text.primary}>
               My Appointments
             </Heading>
-            <Text color="gray.600">
+            <Text color={theme.colors.text.secondary}>
               View and manage your upcoming and past appointments.
             </Text>
           </Box>
           <Button
-            bg="#10b981"
-            color="white"
-            fontWeight="700"
-            borderRadius="xl"
-            px={6}
-            py={3}
-            _hover={{ bg: '#059669' }}
+            {...buttonStyles.success}
             onClick={() => navigate('/patient/find-doctor')}
           >
             <Flex align="center" gap={2}>
@@ -130,18 +116,18 @@ const Appointments = () => {
             <Button
               variant="ghost"
               borderRadius="none"
-              fontWeight="bold"
-                    color={activeTab === 'upcoming' ? '#10b981' : 'gray.600'}
-                    borderBottom="3px solid"
-                    borderBottomColor={
-                      activeTab === 'upcoming' ? '#10b981' : 'transparent'
-                    }
-                    mb="-3px"
-                    px={6}
-                    _hover={{
-                      bg: 'transparent',
-                      color: '#10b981',
-                    }}
+              fontWeight={theme.typography.fontWeight.bold}
+              color={activeTab === 'upcoming' ? theme.colors.primary[600] : theme.colors.text.secondary}
+              borderBottom="3px solid"
+              borderBottomColor={
+                activeTab === 'upcoming' ? theme.colors.primary[600] : 'transparent'
+              }
+              mb="-3px"
+              px={6}
+              _hover={{
+                bg: 'transparent',
+                color: theme.colors.primary[600],
+              }}
               onClick={() => setActiveTab('upcoming')}
             >
               Upcoming
@@ -149,18 +135,18 @@ const Appointments = () => {
             <Button
               variant="ghost"
               borderRadius="none"
-              fontWeight="bold"
-                    color={activeTab === 'past' ? '#10b981' : 'gray.600'}
-                    borderBottom="3px solid"
-                    borderBottomColor={
-                      activeTab === 'past' ? '#10b981' : 'transparent'
-                    }
-                    mb="-3px"
-                    px={6}
-                    _hover={{
-                      bg: 'transparent',
-                      color: '#10b981',
-                    }}
+              fontWeight={theme.typography.fontWeight.bold}
+              color={activeTab === 'past' ? theme.colors.primary[600] : theme.colors.text.secondary}
+              borderBottom="3px solid"
+              borderBottomColor={
+                activeTab === 'past' ? theme.colors.primary[600] : 'transparent'
+              }
+              mb="-3px"
+              px={6}
+              _hover={{
+                bg: 'transparent',
+                color: theme.colors.primary[600],
+              }}
               onClick={() => setActiveTab('past')}
             >
               Past
@@ -170,19 +156,12 @@ const Appointments = () => {
           {/* Filter Buttons */}
           <Flex gap={3} flexWrap="wrap">
             <Button
-              bg="white"
-              color="gray.600"
-              border="1px solid"
-              borderColor="#e5e7eb"
-              borderRadius="md"
+              {...buttonStyles.secondary}
+              fontSize={theme.typography.fontSize.sm}
+              fontWeight={theme.typography.fontWeight.normal}
+              h="auto"
               px={4}
               py={2}
-              fontWeight="400"
-              _hover={{
-                bg: '#f9fafb',
-                borderColor: '#e5e7eb',
-                color: '#374151',
-              }}
             >
               <Flex align="center" gap={2}>
                 <Text>Date Range</Text>
@@ -190,19 +169,12 @@ const Appointments = () => {
               </Flex>
             </Button>
             <Button
-              bg="white"
-              color="gray.600"
-              border="1px solid"
-              borderColor="#e5e7eb"
-              borderRadius="md"
+              {...buttonStyles.secondary}
+              fontSize={theme.typography.fontSize.sm}
+              fontWeight={theme.typography.fontWeight.normal}
+              h="auto"
               px={4}
               py={2}
-              fontWeight="400"
-              _hover={{
-                bg: '#f9fafb',
-                borderColor: '#e5e7eb',
-                color: '#374151',
-              }}
             >
               <Flex align="center" gap={2}>
                 <Text>Status: Confirmed</Text>
@@ -210,19 +182,12 @@ const Appointments = () => {
               </Flex>
             </Button>
             <Button
-              bg="white"
-              color="gray.600"
-              border="1px solid"
-              borderColor="#e5e7eb"
-              borderRadius="md"
+              {...buttonStyles.secondary}
+              fontSize={theme.typography.fontSize.sm}
+              fontWeight={theme.typography.fontWeight.normal}
+              h="auto"
               px={4}
               py={2}
-              fontWeight="400"
-              _hover={{
-                bg: '#f9fafb',
-                borderColor: '#e5e7eb',
-                color: '#374151',
-              }}
             >
               <Flex align="center" gap={2}>
                 <Text>Sort By: Date (Newest)</Text>
@@ -238,14 +203,7 @@ const Appointments = () => {
             {filteredAppointments.map((appointment) => (
               <GridItem key={appointment.id}>
                 <Box
-                  bg="white"
-                  borderRadius="12px"
-                  boxShadow="sm"
-                  p={6}
-                  transition="all 0.3s ease"
-                  _hover={{
-                    boxShadow: '0 0.5rem 1rem rgba(0, 0, 0, 0.15)',
-                  }}
+                  {...cardStyles.default}
                   h="100%"
                 >
                   <Flex justify="space-between" align="flex-start" mb={6}>
@@ -285,24 +243,18 @@ const Appointments = () => {
                   <Flex gap={2}>
                     <Button
                       flex={1}
-                      bg="rgba(16, 185, 129, 0.1)"
-                      color="#10b981"
-                      border="none"
-                      fontWeight="700"
+                      {...buttonStyles.tertiary}
+                      bg={theme.colors.primary[100]}
+                      color={theme.colors.primary[600]}
                       _hover={{
-                        bg: 'rgba(16, 185, 129, 0.2)',
+                        bg: theme.colors.primary[200],
                       }}
                     >
                       Reschedule
                     </Button>
                     <Button
                       flex={1}
-                      variant="outline"
-                      borderColor="#e5e7eb"
-                      _hover={{
-                        bg: '#f9fafb',
-                        borderColor: '#e5e7eb',
-                      }}
+                      {...buttonStyles.secondary}
                     >
                       Cancel
                     </Button>

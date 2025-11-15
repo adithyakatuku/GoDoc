@@ -312,3 +312,107 @@ export const cardStyles = {
   },
 } as const;
 
+/**
+ * Badge Style Presets
+ */
+export const badgeStyles = {
+  success: {
+    bg: theme.colors.status.successLight,
+    color: theme.colors.primary[900],
+    fontSize: theme.typography.fontSize.xs,
+    fontWeight: theme.typography.fontWeight.bold,
+    px: 2.5,
+    py: 1,
+    textTransform: 'uppercase' as const,
+    letterSpacing: '0.05em',
+    borderRadius: theme.borderRadius.full,
+  },
+  warning: {
+    bg: theme.colors.status.warningLight,
+    color: '#92400e',
+    fontSize: theme.typography.fontSize.xs,
+    fontWeight: theme.typography.fontWeight.bold,
+    px: 2.5,
+    py: 1,
+    textTransform: 'uppercase' as const,
+    letterSpacing: '0.05em',
+    borderRadius: theme.borderRadius.full,
+  },
+  error: {
+    bg: 'rgba(239, 68, 68, 0.15)',
+    color: '#991b1b',
+    fontSize: theme.typography.fontSize.xs,
+    fontWeight: theme.typography.fontWeight.bold,
+    px: 2.5,
+    py: 1,
+    textTransform: 'uppercase' as const,
+    letterSpacing: '0.05em',
+    borderRadius: theme.borderRadius.full,
+  },
+  info: {
+    bg: theme.colors.status.infoLight,
+    color: '#1e40af',
+    fontSize: theme.typography.fontSize.xs,
+    fontWeight: theme.typography.fontWeight.bold,
+    px: 2.5,
+    py: 1,
+    textTransform: 'uppercase' as const,
+    letterSpacing: '0.05em',
+    borderRadius: theme.borderRadius.full,
+  },
+} as const;
+
+/**
+ * Tab Style Presets
+ */
+export const tabStyles = {
+  default: {
+    fontWeight: theme.typography.fontWeight.semibold,
+    borderRadius: theme.borderRadius.md,
+    px: 6,
+    py: 2,
+    transition: 'all 0.2s ease',
+  },
+  active: {
+    bg: theme.colors.primary[600],
+    color: theme.colors.text.inverse,
+    border: '1px solid',
+    borderColor: theme.colors.primary[600],
+  },
+  inactive: {
+    bg: theme.colors.background.primary,
+    color: theme.colors.text.secondary,
+    border: '1px solid',
+    borderColor: theme.colors.border.light,
+    _hover: {
+      bg: '#f7fafc',
+      borderColor: theme.colors.border.light,
+    },
+  },
+} as const;
+
+/**
+ * Secondary Button Style (for light green buttons like "Medical Records")
+ */
+export const buttonStylesSecondary = {
+  lightGreen: {
+    bg: '#c6f4e3',
+    color: theme.colors.primary[600],
+    fontWeight: theme.typography.fontWeight.bold,
+    fontSize: theme.typography.fontSize.lg,
+    lineHeight: '28px',
+    height: '48px',
+    borderRadius: theme.borderRadius.lg,
+    px: 3,
+    border: 'none',
+    transition: 'all 0.2s ease',
+    _hover: {
+      bg: '#a8ead1',
+      transform: 'translateY(-1px)',
+    },
+    _active: {
+      bg: '#8de4bf',
+    },
+  },
+} as const;
+

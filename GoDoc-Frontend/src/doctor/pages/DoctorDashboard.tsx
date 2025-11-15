@@ -8,6 +8,7 @@ import {
   Grid,
   GridItem,
 } from '@chakra-ui/react';
+import { buttonStyles, buttonStylesSecondary, cardStyles, theme } from '../../styles/theme';
 
 interface Appointment {
   id: number;
@@ -45,9 +46,9 @@ const DoctorDashboard = () => {
   ];
 
   return (
-    <Box minH="100vh" bg="#e8f5f0">
+    <Box minH="100vh" bg={theme.colors.background.tertiary}>
       <Container maxW="container.xl" py={10} px={{ base: 6, md: 8, lg: 12 }}>
-        <Heading size="xl" fontWeight="800" mb={8} color="gray.800">
+        <Heading size="xl" fontWeight={theme.typography.fontWeight.extrabold} mb={8} color={theme.colors.text.primary}>
           Welcome back, Dr. Carter
         </Heading>
 
@@ -56,22 +57,19 @@ const DoctorDashboard = () => {
           <GridItem>
             {/* Today's Schedule Stats */}
             <Box mb={8}>
-              <Heading size="md" fontWeight="800" mb={4} color="gray.800">
+              <Heading size="md" fontWeight={theme.typography.fontWeight.extrabold} mb={4} color={theme.colors.text.primary}>
                 Today's Schedule
               </Heading>
               <Grid templateColumns={{ base: '1fr', md: 'repeat(3, 1fr)' }} gap={4}>
                 {stats.map((stat, index) => (
                   <Box
                     key={index}
-                    bg="white"
-                    borderRadius="xl"
-                    boxShadow="sm"
-                    p={4}
+                    {...cardStyles.default}
                   >
-                    <Text fontSize="sm" color="gray.500" mb={1}>
+                    <Text fontSize="sm" color={theme.colors.text.tertiary} mb={1}>
                       {stat.label}
                     </Text>
-                    <Text fontSize="3xl" fontWeight="800" color="gray.800">
+                    <Text fontSize="3xl" fontWeight={theme.typography.fontWeight.extrabold} color={theme.colors.text.primary}>
                       {stat.value}
                     </Text>
                   </Box>
@@ -82,13 +80,13 @@ const DoctorDashboard = () => {
             {/* Upcoming Appointments */}
             <Box>
               <Flex justify="space-between" align="center" mb={4}>
-                <Heading size="md" fontWeight="800" color="gray.800">
+                <Heading size="md" fontWeight={theme.typography.fontWeight.extrabold} color={theme.colors.text.primary}>
                   Upcoming Appointments
                 </Heading>
                 <Text
                   fontSize="sm"
-                  fontWeight="600"
-                  color="#10b981"
+                  fontWeight={theme.typography.fontWeight.semibold}
+                  color={theme.colors.primary[600]}
                   cursor="pointer"
                   _hover={{ textDecoration: 'underline' }}
                 >
@@ -99,14 +97,7 @@ const DoctorDashboard = () => {
                 {upcomingAppointments.map((appointment) => (
                   <Box
                     key={appointment.id}
-                    bg="white"
-                    borderRadius="xl"
-                    boxShadow="sm"
-                    p={4}
-                    transition="all 0.3s ease"
-                    _hover={{
-                      boxShadow: 'lg',
-                    }}
+                    {...cardStyles.default}
                   >
                     <Flex align="center" gap={4}>
                       <Box
@@ -119,18 +110,18 @@ const DoctorDashboard = () => {
                         backgroundPosition="center"
                       />
                       <Box flex={1}>
-                        <Heading size="sm" fontWeight="800" mb={1} color="gray.800">
+                        <Heading size="sm" fontWeight={theme.typography.fontWeight.extrabold} mb={1} color={theme.colors.text.primary}>
                           {appointment.patientName}
                         </Heading>
-                        <Text fontSize="sm" color="gray.500">
+                        <Text fontSize="sm" color={theme.colors.text.tertiary}>
                           {appointment.reason}
                         </Text>
                       </Box>
                       <Box textAlign="right">
-                        <Text fontWeight="600" color="gray.800" mb={1}>
+                        <Text fontWeight={theme.typography.fontWeight.semibold} color={theme.colors.text.primary} mb={1}>
                           {appointment.time}
                         </Text>
-                        <Text fontSize="sm" color="gray.500">
+                        <Text fontSize="sm" color={theme.colors.text.tertiary}>
                           {appointment.room}
                         </Text>
                       </Box>
@@ -144,39 +135,19 @@ const DoctorDashboard = () => {
           {/* Right Column - Quick Actions */}
           <GridItem>
             <Box>
-              <Heading size="md" fontWeight="800" mb={4} color="gray.800">
+              <Heading size="md" fontWeight={theme.typography.fontWeight.extrabold} mb={4} color={theme.colors.text.primary}>
                 Quick Actions
               </Heading>
               <Flex direction="column" gap={4}>
                 <Button
-                  bg="#10b981"
-                  color="white"
-                  size="lg"
-                  fontWeight="700"
-                  borderRadius="12px"
-                  py={4}
-                  border="none"
-                  transition="all 0.2s ease"
-                  _hover={{
-                    bg: '#059669',
-                    transform: 'translateY(-1px)',
-                  }}
+                  {...buttonStyles.success}
+                  w="100%"
                 >
                   Patient Records
                 </Button>
                 <Button
-                  bg="#c6f4e3"
-                  color="#10b981"
-                  size="lg"
-                  fontWeight="700"
-                  borderRadius="12px"
-                  py={4}
-                  border="none"
-                  transition="all 0.2s ease"
-                  _hover={{
-                    bg: '#a8ead1',
-                    transform: 'translateY(-1px)',
-                  }}
+                  {...buttonStylesSecondary.lightGreen}
+                  w="100%"
                 >
                   Full Schedule
                 </Button>

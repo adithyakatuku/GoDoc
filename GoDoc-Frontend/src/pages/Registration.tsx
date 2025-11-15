@@ -9,19 +9,20 @@ import {
   Image,
 } from '@chakra-ui/react';
 import godocLogo from '../assets/godoc-logo.png';
+import { buttonStyles, theme } from '../styles/theme';
 
 const Registration = () => {
   const navigate = useNavigate();
 
   return (
-    <Box minH="100vh" bg="gray.50" display="flex" alignItems="center" justifyContent="center" py={12}>
+    <Box minH="100vh" bg={theme.colors.background.secondary} display="flex" alignItems="center" justifyContent="center" py={12}>
       <Container maxW="lg" px={6}>
         <Box
-          bg="white"
-          borderRadius="3xl"
-          boxShadow="2xl"
+          bg={theme.colors.background.primary}
+          borderRadius={theme.borderRadius['3xl']}
+          boxShadow={theme.shadows['2xl']}
           border="1px"
-          borderColor="gray.200"
+          borderColor={theme.colors.border.light}
           p={{ base: 10, md: 16 }}
           maxW="540px"
           mx="auto"
@@ -30,7 +31,7 @@ const Registration = () => {
           <Flex justify="center" mb={10}>
             <Flex align="center" gap={3}>
               <Image src={godocLogo} alt="GoDoc" h={12} />
-              <Heading size="2xl" color="#11d452" fontWeight="800">
+              <Heading size="2xl" color={theme.colors.primary[500]} fontWeight={theme.typography.fontWeight.extrabold}>
                 GoDoc
               </Heading>
             </Flex>
@@ -38,10 +39,10 @@ const Registration = () => {
 
           {/* Title and Subtitle */}
           <Box textAlign="center" mb={12}>
-            <Heading size="2xl" fontWeight="800" color="gray.900" mb={4} lineHeight="1.2">
+            <Heading size="2xl" fontWeight={theme.typography.fontWeight.extrabold} color={theme.colors.text.primary} mb={4} lineHeight="1.2">
               Register Your Account
             </Heading>
-            <Text fontSize="lg" color="gray.600" lineHeight="1.6">
+            <Text fontSize={theme.typography.fontSize.lg} color={theme.colors.text.secondary} lineHeight="1.6">
               Choose your role to get started with GoDoc
             </Text>
           </Box>
@@ -49,48 +50,15 @@ const Registration = () => {
           {/* Registration Buttons */}
           <Flex direction="column" gap={5} mb={10}>
             <Button
-              bg="#34C759"
-              color="white"
-              fontWeight="500"
-              borderRadius="8px"
-              h="48px"
-              fontSize="18px"
-              lineHeight="28px"
+              {...buttonStyles.primary}
               w="100%"
-              px={3}
-              border="none"
-              _hover={{
-                bg: '#29A047',
-              }}
-              _active={{
-                bg: '#207B37',
-              }}
-              transition="background 0.2s ease"
               onClick={() => navigate('/patient/home')}
             >
               Register as a Patient
             </Button>
             <Button
-              bg="white"
-              color="gray.800"
-              fontWeight="500"
-              borderRadius="8px"
-              h="48px"
-              fontSize="18px"
-              lineHeight="28px"
+              {...buttonStyles.secondary}
               w="100%"
-              px={3}
-              border="2px solid"
-              borderColor="gray.300"
-              _hover={{
-                bg: 'gray.50',
-                borderColor: 'gray.400',
-              }}
-              _active={{
-                bg: 'gray.100',
-                borderColor: 'gray.500',
-              }}
-              transition="all 0.2s ease"
               onClick={() => navigate('/doctor/home')}
             >
               Register as a Hospital
@@ -98,12 +66,12 @@ const Registration = () => {
           </Flex>
 
           {/* Login Link */}
-          <Text fontSize="sm" color="gray.600" textAlign="center">
+          <Text fontSize={theme.typography.fontSize.sm} color={theme.colors.text.secondary} textAlign="center">
             Already have an account?{' '}
             <Text
               as="span"
-              color="#11d452"
-              fontWeight="700"
+              color={theme.colors.primary[500]}
+              fontWeight={theme.typography.fontWeight.bold}
               cursor="pointer"
               _hover={{ textDecoration: 'underline' }}
               onClick={() => navigate('/login')}

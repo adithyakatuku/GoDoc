@@ -12,6 +12,7 @@ import { HiBell, HiMenu, HiX } from 'react-icons/hi';
 import { Link, useLocation } from 'react-router-dom';
 import godocLogo from '../../assets/godoc-logo.png';
 import NotificationsModal from '../../components/NotificationsModal';
+import { theme } from '../../styles/theme';
 
 const DoctorNavbar = () => {
   const location = useLocation();
@@ -31,7 +32,7 @@ const DoctorNavbar = () => {
 
   return (
     <>
-      <Box bg="white" borderBottom="1px" borderColor="gray.200" py={4} position="relative">
+      <Box bg={theme.colors.background.primary} borderBottom="1px" borderColor={theme.colors.border.light} py={4} position="relative">
         <Container maxW="container.xl" px={{ base: 6, md: 8, lg: 12 }}>
           <Flex align="center" justify="space-between">
             {/* Left Side - Mobile Menu + Logo */}
@@ -44,14 +45,14 @@ const DoctorNavbar = () => {
                 onClick={() => setIsMobileMenuOpen(true)}
                 _hover={{ opacity: 0.8 }}
               >
-                <Icon as={HiMenu} w={7} h={7} color="gray.600" />
+                <Icon as={HiMenu} w={7} h={7} color={theme.colors.text.secondary} />
               </Box>
 
               {/* Logo */}
               <Link to="/doctor/home">
                 <Flex gap={3} align="center" cursor="pointer" _hover={{ opacity: 0.8 }}>
                   <Image src={godocLogo} alt="GoDoc" h={10} />
-                  <Heading size="md" color="gray.800" fontWeight="800">
+                  <Heading size="md" color={theme.colors.text.primary} fontWeight={theme.typography.fontWeight.extrabold}>
                     GoDoc
                   </Heading>
                 </Flex>
@@ -62,10 +63,10 @@ const DoctorNavbar = () => {
                 {navLinks.map((link) => (
                   <Link key={link.path} to={link.path}>
                     <Text
-                      color={isActive(link.path) ? '#10b981' : 'gray.600'}
-                      fontWeight={isActive(link.path) ? '700' : '600'}
+                      color={isActive(link.path) ? theme.colors.primary[600] : theme.colors.text.secondary}
+                      fontWeight={isActive(link.path) ? theme.typography.fontWeight.bold : theme.typography.fontWeight.semibold}
                       cursor="pointer"
-                      _hover={{ color: '#10b981' }}
+                      _hover={{ color: theme.colors.primary[600] }}
                     >
                       {link.label}
                     </Text>
@@ -84,14 +85,14 @@ const DoctorNavbar = () => {
                 w={10}
                 h={10}
                 borderRadius="full"
-                bg="rgba(16, 185, 129, 0.2)"
+                bg={theme.colors.primary[200]}
                 display="flex"
                 alignItems="center"
                 justifyContent="center"
-                _hover={{ bg: 'rgba(16, 185, 129, 0.3)' }}
+                _hover={{ bg: theme.colors.primary[300] }}
                 onClick={() => setIsNotificationsOpen(!isNotificationsOpen)}
               >
-                <Icon as={HiBell} w={5} h={5} color="#10b981" />
+                <Icon as={HiBell} w={5} h={5} color={theme.colors.primary[600]} />
                 <Box
                   position="absolute"
                   top="6px"
@@ -118,7 +119,7 @@ const DoctorNavbar = () => {
                 h={10}
                 borderRadius="full"
                 overflow="hidden"
-                bg="gray.200"
+                bg={theme.colors.background.secondary}
                 cursor="pointer"
                 _hover={{ opacity: 0.9 }}
               >
@@ -148,8 +149,8 @@ const DoctorNavbar = () => {
         left={0}
         w="280px"
         h="100vh"
-        bg="white"
-        boxShadow="xl"
+        bg={theme.colors.background.primary}
+        boxShadow={theme.shadows.xl}
         transform={isMobileMenuOpen ? 'translateX(0)' : 'translateX(-100%)'}
         transition="transform 0.3s ease"
         zIndex={1000}
@@ -159,12 +160,12 @@ const DoctorNavbar = () => {
           justify="space-between"
           align="center"
           borderBottom="1px"
-          borderColor="gray.200"
+          borderColor={theme.colors.border.light}
           p={4}
         >
           <Flex gap={3} align="center">
             <Image src={godocLogo} alt="GoDoc" h={8} />
-            <Heading size="sm" color="gray.800" fontWeight="800">
+            <Heading size="sm" color={theme.colors.text.primary} fontWeight={theme.typography.fontWeight.extrabold}>
               GoDoc
             </Heading>
           </Flex>
@@ -174,7 +175,7 @@ const DoctorNavbar = () => {
             onClick={() => setIsMobileMenuOpen(false)}
             _hover={{ opacity: 0.7 }}
           >
-            <Icon as={HiX} w={6} h={6} color="gray.600" />
+            <Icon as={HiX} w={6} h={6} color={theme.colors.text.secondary} />
           </Box>
         </Flex>
 
@@ -187,11 +188,11 @@ const DoctorNavbar = () => {
               onClick={() => setIsMobileMenuOpen(false)}
             >
               <Text
-                color={isActive(link.path) ? '#10b981' : 'gray.600'}
-                fontWeight={isActive(link.path) ? '700' : '600'}
-                fontSize="lg"
+                color={isActive(link.path) ? theme.colors.primary[600] : theme.colors.text.secondary}
+                fontWeight={isActive(link.path) ? theme.typography.fontWeight.bold : theme.typography.fontWeight.semibold}
+                fontSize={theme.typography.fontSize.lg}
                 cursor="pointer"
-                _hover={{ color: '#10b981' }}
+                _hover={{ color: theme.colors.primary[600] }}
               >
                 {link.label}
               </Text>

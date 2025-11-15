@@ -9,19 +9,20 @@ import {
   GridItem,
 } from '@chakra-ui/react';
 import { useNavigate } from 'react-router-dom';
+import { buttonStyles, buttonStylesSecondary, cardStyles, theme } from '../../styles/theme';
 
 const PatientDashboard = () => {
   const navigate = useNavigate();
   
   return (
-    <Box minH="100vh" bg="#e8f5f0">
+    <Box minH="100vh" bg={theme.colors.background.tertiary}>
       <Container maxW="container.xl" py={10} px={{ base: 6, md: 8, lg: 12 }}>
         <Heading 
           size="xl" 
-          fontWeight="800" 
+          fontWeight={theme.typography.fontWeight.extrabold} 
           mb={10} 
           textAlign={{ base: 'center', lg: 'left' }}
-          color="gray.800"
+          color={theme.colors.text.primary}
         >
           Welcome back, Sarah
         </Heading>
@@ -31,23 +32,14 @@ const PatientDashboard = () => {
           <GridItem>
             {/* Upcoming Appointment */}
             <Box mb={8}>
-              <Heading size="md" fontWeight="800" mb={4} color="gray.800">
+              <Heading size="md" fontWeight={theme.typography.fontWeight.extrabold} mb={4} color={theme.colors.text.primary}>
                 Upcoming Appointment
               </Heading>
               <Box
                 as="button"
-                bg="white"
-                borderRadius="16px"
-                boxShadow="sm"
-                p={6}
-                transition="all 0.3s ease"
-                cursor="pointer"
+                {...cardStyles.interactive}
                 w="100%"
                 textAlign="left"
-                _hover={{
-                  transform: 'translateY(-2px)',
-                  boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
-                }}
               >
                 <Flex justify="space-between" align="center">
                   <Box flex={1}>
@@ -75,23 +67,14 @@ const PatientDashboard = () => {
 
             {/* Recent Documents */}
             <Box>
-              <Heading size="md" fontWeight="800" mb={4} color="gray.800">
+              <Heading size="md" fontWeight={theme.typography.fontWeight.extrabold} mb={4} color={theme.colors.text.primary}>
                 Recent Documents
               </Heading>
               <Box
                 as="button"
-                bg="white"
-                borderRadius="16px"
-                boxShadow="sm"
-                p={6}
-                transition="all 0.3s ease"
-                cursor="pointer"
+                {...cardStyles.interactive}
                 w="100%"
                 textAlign="left"
-                _hover={{
-                  transform: 'translateY(-2px)',
-                  boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
-                }}
               >
                 <Flex justify="space-between" align="center">
                   <Box flex={1}>
@@ -118,40 +101,20 @@ const PatientDashboard = () => {
           {/* Right Column - Quick Actions */}
           <GridItem>
             <Box>
-              <Heading size="md" fontWeight="800" mb={4} color="gray.800">
+              <Heading size="md" fontWeight={theme.typography.fontWeight.extrabold} mb={4} color={theme.colors.text.primary}>
                 Quick Actions
               </Heading>
               <Flex direction="column" gap={4}>
                 <Button
-                  bg="#10b981"
-                  color="white"
-                  size="lg"
-                  fontWeight="700"
-                  borderRadius="12px"
-                  py={4}
-                  border="none"
-                  transition="all 0.2s ease"
-                  _hover={{
-                    bg: '#059669',
-                    transform: 'translateY(-1px)',
-                  }}
+                  {...buttonStyles.success}
+                  w="100%"
                   onClick={() => navigate('/patient/find-doctor')}
                 >
                   Find a Doctor
                 </Button>
                 <Button
-                  bg="#c6f4e3"
-                  color="#10b981"
-                  size="lg"
-                  fontWeight="700"
-                  borderRadius="12px"
-                  py={4}
-                  border="none"
-                  transition="all 0.2s ease"
-                  _hover={{
-                    bg: '#a8ead1',
-                    transform: 'translateY(-1px)',
-                  }}
+                  {...buttonStylesSecondary.lightGreen}
+                  w="100%"
                   onClick={() => navigate('/patient/medical-records')}
                 >
                   Medical Records
