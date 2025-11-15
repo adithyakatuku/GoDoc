@@ -8,9 +8,7 @@ import {
   Text,
   Button,
   Input,
-  Image,
 } from '@chakra-ui/react';
-import godocLogo from '../assets/godoc-logo.png';
 import { buttonStyles, theme } from '../styles/theme';
 
 const Login = () => {
@@ -38,16 +36,6 @@ const Login = () => {
           maxW="480px"
           mx="auto"
         >
-          {/* Logo */}
-          <Flex justify="center" mb={8}>
-            <Flex align="center" gap={3}>
-              <Image src={godocLogo} alt="GoDoc" h={10} />
-              <Heading size="xl" color={theme.colors.primary[500]} fontWeight={theme.typography.fontWeight.extrabold}>
-                GoDoc
-              </Heading>
-            </Flex>
-          </Flex>
-
           {/* Title and Subtitle */}
           <Box textAlign="center" mb={8}>
             <Heading size="xl" fontWeight={theme.typography.fontWeight.extrabold} color={theme.colors.text.primary} mb={2}>
