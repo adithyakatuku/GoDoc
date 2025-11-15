@@ -59,7 +59,7 @@ const Registration = () => {
             <Button
               {...buttonStyles.secondary}
               w="100%"
-              onClick={() => navigate('/doctor/home')}
+              onClick={() => navigate('/register/hospital')}
             >
               Register as a Hospital
             </Button>

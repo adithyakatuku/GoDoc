@@ -8,6 +8,7 @@ import {
   Grid,
   GridItem,
   Input,
+  Textarea,
   Badge,
   VStack,
   HStack,
@@ -215,6 +216,53 @@ const StyleGuide = () => {
                   </Text>
                   <Input placeholder="Error state" borderColor={theme.colors.status.error} />
                 </Box>
+
+                <Box borderTop="1px solid" borderColor={theme.colors.border.light} my={2} />
+
+                <Box>
+                  <Text fontSize="sm" fontWeight="600" color={theme.colors.text.secondary} mb={2}>
+                    Default Textarea
+                  </Text>
+                  <Textarea
+                    placeholder="Enter your message here..."
+                    borderRadius={theme.borderRadius.md}
+                    border="1px solid"
+                    borderColor={theme.colors.border.light}
+                    _focus={{
+                      borderColor: theme.colors.primary[600],
+                      boxShadow: `0 0 0 0.25rem ${theme.colors.primary[200]}`,
+                    }}
+                  />
+                </Box>
+
+                <Box>
+                  <Text fontSize="sm" fontWeight="600" color={theme.colors.text.secondary} mb={2}>
+                    Textarea with Value
+                  </Text>
+                  <Textarea
+                    value="This is a textarea with some pre-filled content. It demonstrates how the textarea looks with actual text inside it."
+                    borderRadius={theme.borderRadius.md}
+                    border="1px solid"
+                    borderColor={theme.colors.border.light}
+                    _focus={{
+                      borderColor: theme.colors.primary[600],
+                      boxShadow: `0 0 0 0.25rem ${theme.colors.primary[200]}`,
+                    }}
+                  />
+                </Box>
+
+                <Box>
+                  <Text fontSize="sm" fontWeight="600" color={theme.colors.text.secondary} mb={2}>
+                    Disabled Textarea
+                  </Text>
+                  <Textarea
+                    placeholder="Disabled textarea"
+                    disabled
+                    borderRadius={theme.borderRadius.md}
+                    border="1px solid"
+                    borderColor={theme.colors.border.light}
+                  />
+                </Box>
               </VStack>
             </Box>
           </GridItem>
@@ -329,6 +377,15 @@ const StyleGuide = () => {
                   </Text>
                   <Button {...buttonStylesSecondary.lightGreen} w="100%">
                     Medical Records
+                  </Button>
+                </Box>
+
+                <Box>
+                  <Text fontSize="sm" fontWeight="600" color={theme.colors.text.secondary} mb={2}>
+                    Outlined Button (Thin border, matches inputs)
+                  </Text>
+                  <Button {...buttonStylesSecondary.outlined} w="100%">
+                    Upload Logo
                   </Button>
                 </Box>
               </VStack>

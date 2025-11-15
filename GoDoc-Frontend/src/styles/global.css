@@ -470,6 +470,17 @@ input[data-search-input="true"],
   padding-right: 16px !important;
 }
 
+/* Textarea padding - match input padding */
+textarea {
+  padding: 12px 20px !important;
+}
+
+/* For Chakra UI Textarea components */
+[data-part="textarea"],
+textarea[data-part="textarea"] {
+  padding: 12px 20px !important;
+}
+
 /* ============================================
    Badge Styles
    ============================================ */

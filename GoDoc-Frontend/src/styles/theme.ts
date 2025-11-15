@@ -414,5 +414,29 @@ export const buttonStylesSecondary = {
       bg: '#8de4bf',
     },
   },
+  outlined: {
+    bg: theme.colors.background.primary,
+    color: theme.colors.text.primary,
+    fontWeight: theme.typography.fontWeight.medium,
+    fontSize: theme.typography.fontSize.lg,
+    lineHeight: '28px',
+    height: '48px',
+    borderRadius: theme.borderRadius.md,
+    px: 3,
+    border: '1px solid',
+    borderColor: theme.colors.border.light,
+    _hover: {
+      bg: theme.colors.background.secondary,
+      borderColor: theme.colors.border.medium,
+    },
+    _active: {
+      bg: '#e2e8f0',
+      borderColor: theme.colors.border.medium,
+    },
+    _disabled: {
+      opacity: 0.4,
+      cursor: 'not-allowed',
+    },
+  },
 } as const;
 
