@@ -23,7 +23,7 @@ const DoctorApp = () => {
         <Route path="schedule" element={<Schedule />} />
         <Route path="patients" element={<ComingSoon title="Patients Page" />} />
         <Route path="messages" element={<ComingSoon title="Messages Page" />} />
-        <Route path="" element={<Navigate to="dashboard" replace />} />
+        <Route path="" element={<Navigate to="home" replace />} />
       </Routes>
     </>
   );
